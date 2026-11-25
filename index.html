@@ -108,6 +108,31 @@ footer{background:#0a1430;color:#c9d2ea;font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between}
 .ltr{direction:ltr;unicode-bidi:isolate}
 .fab{position:fixed;inset-inline-end:18px;bottom:18px;z-index:30;width:60px;height:60px;border-radius:50%;background:#1fa855;display:grid;place-items:center;box-shadow:0 10px 24px #0004}
+.fab{bottom:92px;width:52px;height:52px}
+.fab svg{width:28px;height:28px}
+#cbBtn{position:fixed;inset-inline-end:18px;bottom:18px;z-index:31;width:62px;height:62px;border-radius:50%;border:3px solid var(--gold);background:var(--navy);color:var(--gold);display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 24px #0005}
+#cbBtn:focus-visible,#cbForm button:focus-visible,#cbIn:focus-visible,.chip:focus-visible,#cbX:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+#cbBtn .dot{position:absolute;top:2px;inset-inline-end:2px;width:14px;height:14px;border-radius:50%;background:#e74c3c;border:2px solid var(--navy)}
+#cb{position:fixed;inset-inline-end:18px;bottom:92px;z-index:40;width:min(380px,calc(100vw - 24px));height:min(560px,calc(100dvh - 120px));background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:0 24px 60px #12224a55;display:none;flex-direction:column;overflow:hidden}
+#cb.open{display:flex}
+.cbH{display:flex;align-items:center;gap:10px;background:var(--navy);color:#fff;padding:12px 14px}
+.cbH b{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;border:2px solid var(--gold);color:var(--gold);font:700 20px Georgia,serif;flex:none}
+.cbH strong{display:block;font-size:15px;line-height:1.2}.cbH small{color:#c9d2ea;font-size:13px}
+#cbX{margin-inline-start:auto;background:none;border:0;color:#fff;font-size:24px;width:44px;height:44px;cursor:pointer}
+#cbLog{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:var(--bg)}
+.msg{max-width:86%;padding:10px 13px;border-radius:16px;font-size:15px;line-height:1.55;white-space:pre-line;overflow-wrap:anywhere}
+.bot{align-self:flex-start;background:var(--card);border:1px solid var(--line);border-start-start-radius:4px}
+.me{align-self:flex-end;background:var(--navy);color:#fff;border-start-end-radius:4px}
+.msg a{color:inherit;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{min-height:36px;padding:0 12px;border-radius:999px;border:1.5px solid var(--gold);background:var(--card);color:var(--ink);font:600 13px var(--body);cursor:pointer}
+.chip:hover{background:var(--gold);color:#12224a}
+#cbForm{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line);background:var(--card)}
+#cbIn{flex:1;min-height:44px}
+#cbForm button{width:48px;min-height:44px;border-radius:12px;border:0;background:var(--gold);color:#12224a;cursor:pointer;font-size:18px}
+:root[dir=rtl] #cbForm button svg{transform:scaleX(-1)}
+.typing{opacity:.6;font-style:italic}
+@media(max-width:480px){#cb{inset-inline-end:12px;bottom:88px}}
 @media(prefers-reduced-motion:no-preference){.portrait{animation:rise .9s ease-out both}@keyframes rise{from{opacity:0;transform:translateY(16px) scale(.97)}}}
 </style>
 </head>
@@ -263,6 +288,12 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-bet
 
 <a class="fab" href="https://wa.me/212606194915" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="32" height="32" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.7-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3z"/></svg></a>
 
+<button id="cbBtn" type="button" aria-controls="cb" aria-expanded="false" aria-label="Assistant"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9 10h.01M12 10h.01M15 10h.01"/></svg><span class="dot"></span></button>
+<section id="cb" role="dialog" aria-labelledby="cbTitle">
+ <div class="cbH"><b>π</b><div><strong id="cbTitle" data-i18n="cbT">Assistant de M. Sraidi</strong><small data-i18n="cbS">Réponses instantanées · 7j/7</small></div><button id="cbX" type="button" aria-label="Fermer">×</button></div>
+ <div id="cbLog" aria-live="polite"></div>
+ <form id="cbForm" autocomplete="off"><input id="cbIn" data-i18n-ph="cbPh" placeholder="Posez votre question…" aria-label="Question"><button type="submit" aria-label="Envoyer"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20l18-8L3 4v6l12 2-12 2z"/></svg></button></form>
+</section>
 <script>
 {
 const AR={
@@ -293,7 +324,7 @@ const AR={
  err:"المرجو إدخال الاسم ورقم الهاتف ومستوى التلميذ على الأقل.",
  waHello:"السلام عليكم أستاذ السرايدي، أرغب في معلومات حول دروس الرياضيات.",
  m0:"السلام عليكم أستاذ السرايدي، طلب دروس جديد:",mP:"ولي الأمر",mT2:"الهاتف",mN:"المستوى",mA:"المواكبة",mD:"الأوقات",mDf:"الصعوبة",mM:"رسالة",
- pT:"البرنامج",pD:"صعوبات شائعة",pE:"ما نشتغل عليه",title:"محمد السرايدي — دروس الرياضيات"
+ cbT:"مساعد الأستاذ السرايدي",cbS:"أجوبة فورية · طيلة الأسبوع",cbPh:"اكتب سؤالك…",pT:"البرنامج",pD:"صعوبات شائعة",pE:"ما نشتغل عليه",title:"محمد السرايدي — دروس الرياضيات"
 };
 const FRX={err:"Merci d'indiquer au minimum votre nom, votre téléphone et le niveau de l'élève.",waHello:"Bonjour M. Sraidi, je souhaite des informations sur vos cours de mathématiques.",m0:"Bonjour M. Sraidi, nouvelle demande de cours :",mP:"Parent",mT2:"Téléphone",mN:"Niveau",mA:"Accompagnement",mD:"Disponibilités",mDf:"Difficulté",mM:"Message",pT:"Programme abordé",pD:"Difficultés fréquentes",pE:"Ce que nous travaillons",title:"Mohammed Sraidi — Cours de maths"};
 const FR={...FRX};
@@ -340,6 +371,7 @@ const apply=l=>{
  show(cur);
  document.getElementById('out').classList.remove('show');document.getElementById('err').textContent='';
  try{localStorage.setItem('lang',l)}catch(e){}
+ if(typeof chatLang==='function')chatLang();
 };
 tabs.addEventListener('click',e=>{const b=e.target.closest('.tab');if(b)show(+b.id.slice(1))});
 document.getElementById('lang').addEventListener('click',()=>apply(L==='ar'?'fr':'ar'));
@@ -360,6 +392,52 @@ f.addEventListener('submit',e=>{
  document.getElementById('out').classList.add('show');
  if(location.hostname.endsWith('netlify.app')||location.hostname.endsWith('.ma'))fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(f)).toString()}).catch(()=>{});
 });
+
+/* ---------- Assistant FAQ bilingue ---------- */
+const WA='https://wa.me/212606194915';
+const waL=(t,txt)=>`<a href="${WA}?text=${encodeURIComponent(t)}" target="_blank" rel="noopener">${txt}</a>`;
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ًͯ-ٟـ]/g,'').replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/[^\p{L}\p{N}\s]/gu,' ');
+const KB=[
+ {k:['bonjour','salut','salam','bonsoir','hello','سلام','مرحبا','السلام','اهلا','صباح','مساء'],fr:"Bonjour et bienvenue ! Je réponds aux questions sur les cours de mathématiques de M. Sraidi : niveaux, services, méthode, réservation…",ar:"مرحبًا بك! أجيب عن أسئلتك حول دروس الرياضيات للأستاذ السرايدي: المستويات، الخدمات، المنهجية، الحجز…"},
+ {id:'prix',k:['prix','tarif','tarifs','cout','combien','paiement','payer','mois','mensuel','dh','dirham','ثمن','سعر','اثمنه','الاثمنه','تمن','بشحال','شحال','كم','الثمن','الواجب','واجب','الدفع','درهم'],fr:"Les tarifs dépendent du niveau, de la filière et du nombre de séances par semaine. M. Sraidi vous les communique directement :\n👉 ",ar:"تختلف الأثمنة حسب المستوى والشعبة وعدد الحصص في الأسبوع. يخبرك بها الأستاذ السرايدي مباشرة:\n👉 ",wa:1},
+ {id:'res',k:['reserver','reservation','inscrire','inscription','commencer','essai','rendez','حجز','احجز','التسجيل','تسجيل','نبدا','ابدا','موعد'],fr:"Pour réserver, remplissez le <a href=\"#contact\">formulaire de demande</a> (1 minute) ou écrivez directement :\n👉 ",ar:"للحجز، املأ <a href=\"#contact\">استمارة الطلب</a> (دقيقة واحدة) أو راسل مباشرة:\n👉 ",wa:1},
+ {id:'niv',k:['niveau','niveaux','classe','college','lycee','1ac','2ac','3ac','tronc','commun','primaire','مستوى','المستويات','المستوى','اعدادي','الاعدادي','ثانوي','الثانوي','جذع','مشترك','قسم','ابتدائي'],fr:"Les cours couvrent :\n• Collège : 1AC, 2AC, 3AC\n• Lycée : Tronc commun, 1ère et 2ème année Bac\nToutes filières, dont Sciences Maths et Sciences Expérimentales. Détails dans la rubrique <a href=\"#niveaux\">Niveaux</a>.",ar:"تشمل الدروس:\n• الإعدادي: الأولى والثانية والثالثة إعدادي\n• الثانوي: الجذع المشترك، الأولى والثانية باكالوريا\nجميع الشعب، منها العلوم الرياضية والعلوم التجريبية. التفاصيل في قسم <a href=\"#niveaux\">المستويات</a>."},
+ {id:'fil',k:['filiere','sciences','maths','sm','pc','svt','experimentale','economie','شعبه','الشعبه','علوم','رياضيه','تجريبيه','فيزياء'],fr:"Toutes les filières du lycée sont concernées, en particulier Sciences Mathématiques et Sciences Expérimentales. Pour une autre filière, précisez-la dans le <a href=\"#contact\">formulaire</a>.",ar:"جميع شعب الثانوي معنية، خاصة العلوم الرياضية والعلوم التجريبية. إذا كانت شعبة أخرى، حدّدها في <a href=\"#contact\">الاستمارة</a>."},
+ {id:'bac',k:['bac','baccalaureat','examen','examens','national','regional','brevet','controle','devoir','revision','blanc','باك','باكالوريا','الباكالوريا','امتحان','الامتحان','وطني','الوطني','جهوي','الجهوي','فرض','الفروض','مراجعه','تجريبي'],fr:"Oui : préparation aux contrôles, examens blancs, examen régional de 3AC et examens nationaux du baccalauréat, avec annales corrigées et plan de révision.",ar:"نعم: التحضير للفروض، امتحانات تجريبية، الامتحان الجهوي للثالثة إعدادي والامتحانات الوطنية للباكالوريا، مع امتحانات سابقة مصححة وخطة مراجعة."},
+ {id:'dom',k:['domicile','maison','chez','deplacement','ligne','distance','visio','zoom','online','منزل','المنزل','الدار','فالدار','بعد','الانترنت','اونلاين'],fr:"Les cours ont lieu à domicile, chez l'élève. La possibilité de cours en ligne est à confirmer avec M. Sraidi :\n👉 ",ar:"الدروس تتم في منزل التلميذ. إمكانية الدروس عن بعد تُؤكَّد مع الأستاذ السرايدي:\n👉 ",wa:1},
+ {id:'zone',k:['ville','zone','quartier','khouribga','adresse','region','secteur','مدينه','المدينه','حي','الحي','فين','اين','منطقه','العنوان'],fr:"La zone d'intervention est confirmée au cas par cas. Indiquez votre quartier à M. Sraidi :\n👉 ",ar:"تُحدَّد منطقة التدخل حسب كل حالة. أخبر الأستاذ السرايدي بحيّك:\n👉 ",wa:1},
+ {id:'hor',k:['horaire','horaires','heure','disponible','disponibilite','quand','jour','soir','weekend','samedi','dimanche','vacances','وقت','الوقت','اوقات','الاوقات','ساعه','متى','امتى','عطله','السبت','الاحد'],fr:"Les séances sont flexibles et fixées selon vos disponibilités (en semaine, le soir ou le week-end). Indiquez vos créneaux dans le <a href=\"#contact\">formulaire</a>.",ar:"الحصص مرنة وتُحدَّد حسب أوقاتكم (خلال الأسبوع، مساءً أو في نهاية الأسبوع). أشر إلى أوقاتك في <a href=\"#contact\">الاستمارة</a>."},
+ {id:'svc',k:['service','services','cours','soutien','renforcement','proposez','offre','exercice','exercices','correction','دروس','الدروس','دعم','الدعم','تقويه','التقويه','تمارين','تصحيح','خدمات'],fr:"Quatre formules :\n• Soutien scolaire\n• Renforcement (exercices d'assimilation et d'approfondissement)\n• Préparation aux examens\n• Accompagnement personnalisé (correction des devoirs, suivi par WhatsApp)\nVoir <a href=\"#cours\">Nos cours</a>.",ar:"أربع صيغ:\n• الدعم المدرسي\n• التقوية (تمارين الاستيعاب والتعمق)\n• التحضير للامتحانات\n• مواكبة شخصية (تصحيح الفروض، متابعة عبر واتساب)\nانظر <a href=\"#cours\">دروسنا</a>."},
+ {id:'met',k:['methode','comment','pedagogie','deroule','seance','diagnostic','منهجيه','المنهجيه','كيف','كيفاش','طريقه','الحصه','تشخيص'],fr:"La méthode suit 5 étapes : diagnostic des lacunes, explication claire, exercices d'assimilation, approfondissement, puis évaluation des progrès. La première séance commence par le diagnostic.",ar:"تتبع المنهجية 5 مراحل: تشخيص الثغرات، شرح واضح، تمارين الاستيعاب، التعمق، ثم تقييم التقدم. تبدأ الحصة الأولى بالتشخيص."},
+ {id:'wa',k:['whatsapp','suivi','quotidien','واتساب','الواتساب','متابعه','يوميه'],fr:"Oui, un accompagnement quotidien via WhatsApp permet à l'élève de poser ses questions et d'envoyer ses exercices entre les séances.",ar:"نعم، تتيح المواكبة اليومية عبر واتساب للتلميذ طرح أسئلته وإرسال تمارينه بين الحصص."},
+ {id:'tel',k:['telephone','numero','appeler','contact','joindre','tel','هاتف','الهاتف','رقم','الرقم','اتصال','نتصل'],fr:"Téléphone et WhatsApp : 06 06 19 49 15.\n👉 ",ar:"الهاتف وواتساب: ‎06 06 19 49 15‎.\n👉 ",wa:1},
+ {id:'prof',k:['professeur','prof','experience','diplome','formation','parcours','sraidi','استاذ','الاستاذ','خبره','الخبره','شهاده'],fr:"Mohammed Sraidi est professeur de mathématiques et accompagne à domicile les élèves du collège et du lycée. Son parcours détaillé sera bientôt publié dans la rubrique <a href=\"#apropos\">À propos</a>.",ar:"محمد السرايدي أستاذ الرياضيات، يواكب تلاميذ الإعدادي والثانوي في منازلهم. سيُنشر مساره المفصل قريبًا في قسم <a href=\"#apropos\">من أنا</a>."},
+ {id:'grp',k:['groupe','collectif','plusieurs','freres','amis','individuel','seul','مجموعه','جماعي','فردي','اخوه','اصدقاء'],fr:"Les cours sont individuels. Pour des cours en petit groupe (frères et sœurs, amis), demandez à M. Sraidi :\n👉 ",ar:"الدروس فردية. بالنسبة للدروس في مجموعات صغيرة (إخوة، أصدقاء)، اسأل الأستاذ السرايدي:\n👉 ",wa:1},
+ {id:'gar',k:['garanti','garantie','resultat','resultats','note','notes','progres','ameliorer','نتيجه','النتائج','نقطه','النقط','تحسن','مضمون'],fr:"Les progrès sont suivis et mesurés à chaque étape, et les parents en sont informés. Les résultats dépendent aussi du travail régulier de l'élève.",ar:"يتم تتبع التقدم وقياسه في كل مرحلة، ويُطلع الآباء عليه. وتتوقف النتائج أيضًا على العمل المنتظم للتلميذ."},
+ {k:['merci','thanks','بارك','شكرا','الله','يعطيك'],fr:"Avec plaisir ! Bonne réussite à votre enfant.",ar:"بكل سرور! بالتوفيق لابنكم."}
+];
+const CB={fr:{hi:"Bonjour 👋 Je suis l'assistant de M. Sraidi. Posez votre question ou choisissez un sujet :",fb:"Je n'ai pas encore la réponse à cette question. M. Sraidi vous répondra directement :\n👉 ",wa:"Écrire sur WhatsApp",more:"Autre chose ?",chips:[['niv','Niveaux'],['prix','Tarifs'],['bac','Préparation Bac'],['hor','Horaires'],['res','Réserver']],waMsg:"Bonjour M. Sraidi, j'ai une question : "},
+ ar:{hi:"مرحبًا 👋 أنا مساعد الأستاذ السرايدي. اطرح سؤالك أو اختر موضوعًا:",fb:"ليس لدي جواب على هذا السؤال بعد. سيجيبك الأستاذ السرايدي مباشرة:\n👉 ",wa:"راسل عبر واتساب",more:"شيء آخر؟",chips:[['niv','المستويات'],['prix','الأثمنة'],['bac','التحضير للباك'],['hor','الأوقات'],['res','الحجز']],waMsg:"السلام عليكم أستاذ السرايدي، عندي سؤال: "}};
+const log=document.getElementById('cbLog'),cb=document.getElementById('cb'),cbBtn=document.getElementById('cbBtn');
+const add=(html,who,raw)=>{const d=document.createElement('div');d.className='msg '+who;if(raw)d.textContent=html;else d.innerHTML=html;log.appendChild(d);log.scrollTop=log.scrollHeight;return d};
+const chips=()=>{const c=document.createElement('div');c.className='chips';c.innerHTML=CB[L].chips.map(([id,t])=>`<button class="chip" type="button" data-id="${id}">${t}</button>`).join('');log.appendChild(c);log.scrollTop=log.scrollHeight};
+const answer=(e,q)=>{const t=e[L];return e.wa?t+waL(CB[L].waMsg+(q||''),CB[L].wa):t};
+const reply=q=>{
+ const st=x=>x.length>4?x.replace(/^(وال|بال|فال|ال|لل)/,''):x;const w=norm(q).split(/\s+/).filter(Boolean).map(st);let best=null,sc=0;
+ for(const e of KB){let s=0;for(const k of e.k){const nk=st(norm(k));if(w.includes(nk))s+=2;else if(nk.length>3&&w.some(x=>x.startsWith(nk)||nk.startsWith(x)&&x.length>3))s+=1}if(s>sc){sc=s;best=e}}
+ const t=add('…','bot typing');
+ setTimeout(()=>{t.classList.remove('typing');t.innerHTML=best?answer(best,q):CB[L].fb+waL(CB[L].waMsg+q,CB[L].wa);if(!best||best.wa)chips()},450);
+};
+const chatLang=()=>{log.innerHTML='';add(CB[L].hi,'bot');chips()};
+const toggle=o=>{cb.classList.toggle('open',o);cbBtn.setAttribute('aria-expanded',o);if(o){cbBtn.querySelector('.dot')?.remove();document.getElementById('cbIn').focus()}};
+cbBtn.addEventListener('click',()=>toggle(!cb.classList.contains('open')));
+document.getElementById('cbX').addEventListener('click',()=>{toggle(false);cbBtn.focus()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&cb.classList.contains('open'))toggle(false)});
+log.addEventListener('click',e=>{
+ const c=e.target.closest('.chip');if(c){const en=KB.find(x=>x.id===c.dataset.id);add(c.textContent,'me',1);setTimeout(()=>add(answer(en,''),'bot'),300);return}
+ const a=e.target.closest('a[href^="#"]');if(a&&innerWidth<600)toggle(false);
+});
+document.getElementById('cbForm').addEventListener('submit',e=>{e.preventDefault();const i=document.getElementById('cbIn'),q=i.value.trim();if(!q)return;add(q,'me',1);i.value='';reply(q)});
 
 let start='fr';
 try{const q=new URLSearchParams(location.search).get('lang');start=q||localStorage.getItem('lang')||((navigator.language||'').startsWith('ar')?'ar':'fr')}catch(e){}

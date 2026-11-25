@@ -8,6 +8,7 @@ Site vitrine bilingue **français / العربية** (phase 1 du cahier des char
 - Formulaire de demande de cours → message WhatsApp pré-rempli (06 06 19 49 15)
 - Formulaire compatible **Netlify Forms** (`demande-cours`) pour enregistrer les demandes
 - Mention de protection des données (loi 09-08)
+- Assistant FAQ bilingue (bouton en bas de l'écran) : répond aux questions fréquentes (niveaux, tarifs, examens, horaires, réservation…) et renvoie vers WhatsApp quand il ne sait pas. Les réponses se modifient dans le tableau `KB` du script de `index.html`.
 
 ## Fichiers
 - `index.html` : le site complet (CSS, JS et photo intégrés)
